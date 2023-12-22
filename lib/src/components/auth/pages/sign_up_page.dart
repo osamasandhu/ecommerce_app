@@ -23,9 +23,6 @@ class _SignUpPageState extends State<SignUpPage> {
   final userNameController = TextEditingController();
   final passwordController = TextEditingController();
 
-  ///For Password
-  bool isShow = true;
-
   AutovalidateMode autovalidateMode = AutovalidateMode.disabled;
 
   final _formKey = GlobalKey<FormState>();
@@ -100,11 +97,12 @@ class _SignUpPageState extends State<SignUpPage> {
                   child: const Text('Sign up'),
                 ),
                 HaveOrNotAccount(
-                    onTap: () {
-                      AppNavigation.pop(context);
-                    },
-                    authText: "Sign-in",
-                    haveText: "Already have account? "),
+                  onTap: () {
+                    AppNavigation.pop(context);
+                  },
+                  authText: "Sign-in",
+                  haveText: "Already have account? ",
+                ),
               ],
             ),
           ),
