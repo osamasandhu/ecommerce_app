@@ -60,25 +60,6 @@ class _SignInPageState extends State<SignInPage> {
                 const SizedBox(height: 15),
                 ElevatedButton(
                   onPressed: onSubmit,
-                  // () {
-                  // if (_formKey.currentState!.validate()) {
-                  //   showDialog(
-                  //     barrierDismissible: false,
-                  //     context: context,
-                  //     builder: (c) {
-                  //       return AppDialog.loadingDialog();
-                  //     },
-                  //   );
-                  //   const CircularProgressIndicator();
-                  //   Future.delayed(
-                  //     const Duration(seconds: 3),
-                  //     () {
-                  //       AppNavigation.pushReplacement(
-                  //           context, const CategoriesPage());
-                  //     },
-                  //   );
-                  // }
-                  // },
                   child: const Text('Sign in'),
                 ),
                 HaveOrNotAccount(

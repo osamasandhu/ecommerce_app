@@ -1,5 +1,4 @@
 import 'package:ecommerce_app/src/components/auth/models/sign_up_model.dart';
-import 'package:ecommerce_app/src/components/auth/pages/sign_in_page.dart';
 import 'package:ecommerce_app/src/components/category/page/categories_page.dart';
 import 'package:ecommerce_app/src/services/rest_api.dart';
 import 'package:ecommerce_app/src/utils/nav.dart';
@@ -102,8 +101,7 @@ class _SignUpPageState extends State<SignUpPage> {
                 ),
                 HaveOrNotAccount(
                     onTap: () {
-                      AppNavigation.pushReplacement(
-                          context, const SignInPage());
+                      AppNavigation.pop(context);
                     },
                     authText: "Sign-in",
                     haveText: "Already have account? "),
@@ -123,7 +121,12 @@ class _SignUpPageState extends State<SignUpPage> {
           context: context,
           arguments: 'Loading',
         );
-        if (mounted) await AppNavigation.push(context, const CategoriesPage());
+        if (mounted) {
+          await AppNavigation.push(
+            context,
+            const CategoriesPage(),
+          );
+        }
       }
     } catch (e) {
       showDioError(context, e);

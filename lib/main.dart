@@ -1,4 +1,5 @@
 import 'package:ecommerce_app/src/base/app_data.dart';
+import 'package:ecommerce_app/src/components/auth/pages/sign_in_page.dart';
 import 'package:ecommerce_app/src/components/category/page/categories_page.dart';
 import 'package:ecommerce_app/src/utils/default_behavior.dart';
 import 'package:ecommerce_app/src/utils/theme.dart';
@@ -20,7 +21,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       theme: AppTheme.themeData,
       debugShowCheckedModeBanner: false,
-      home: const CategoriesPage(),
+      home: const SignInPage(),
     );
   }
 }

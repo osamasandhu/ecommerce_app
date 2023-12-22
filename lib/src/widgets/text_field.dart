@@ -59,7 +59,7 @@ class AppPasswordField extends StatefulWidget {
       : super(key: key);
 
   @override
-  _AppPasswordFieldState createState() => _AppPasswordFieldState();
+  State<AppPasswordField> createState() => _AppPasswordFieldState();
 }
 
 class _AppPasswordFieldState extends State<AppPasswordField> {
