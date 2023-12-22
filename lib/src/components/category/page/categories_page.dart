@@ -1,5 +1,3 @@
-import 'package:ecommerce_app/src/base/app_data.dart';
-import 'package:ecommerce_app/src/components/cart/page/cart_page.dart';
 import 'package:ecommerce_app/src/components/category/provider/future_provider.dart';
 import 'package:ecommerce_app/src/components/product/page/product_detail_page.dart';
 import 'package:ecommerce_app/src/components/product/page/products_list_page.dart';
