@@ -1,6 +1,5 @@
 import 'package:ecommerce_app/src/base/app_data.dart';
 import 'package:ecommerce_app/src/components/cart/model/cart_model.dart';
-import 'package:ecommerce_app/src/components/product/page/product_detail_page.dart';
 import 'package:ecommerce_app/src/components/product/provider/count_provider.dart';
 import 'package:ecommerce_app/src/utils/nav.dart';
 import 'package:ecommerce_app/src/widgets/error.dart';

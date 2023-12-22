@@ -17,7 +17,7 @@ class ProductsPage extends ConsumerWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text(categoryName),
-        actions: [CartWidget()],
+        actions: const [CartWidget()],
       ),
       body: productList.when(
         data: (product) {
