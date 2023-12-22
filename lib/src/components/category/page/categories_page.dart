@@ -29,40 +29,46 @@ class CategoriesPage extends ConsumerWidget {
           if (category.isEmpty) {
             return const NoRecordWidget();
           } else {
-            return GridView.builder(
-              padding: const EdgeInsets.all(20),
-              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 2,
-                crossAxisSpacing: 10,
-                mainAxisSpacing: 10,
-              ),
-              itemCount: category.length,
-              itemBuilder: (c, i) {
-                return InkWell(
-                  borderRadius: BorderRadius.circular(20),
-                  onTap: () {
-                    AppNavigation.push(
-                        context, ProductsPage(categoryName: category[i]));
-                  },
-                  child: Material(
+            return LayoutBuilder(builder: (context, constraint) {
+              return GridView.builder(
+                padding: const EdgeInsets.all(20),
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: constraint.maxWidth < 550
+                      ? 2
+                      : constraint.maxWidth < 780
+                          ? 4
+                          : 8,
+                  crossAxisSpacing: 10,
+                  mainAxisSpacing: 10,
+                ),
+                itemCount: category.length,
+                itemBuilder: (c, i) {
+                  return InkWell(
                     borderRadius: BorderRadius.circular(20),
-                    color: AppColors.primaryColor,
-                    elevation: 8,
-                    child: Center(
-                      child: Text(
-                        category[i],
-                        style: const TextStyle(
-                          color: Colors.white,
-                          fontWeight: FontWeight.w200,
-                          fontSize: 18,
+                    onTap: () {
+                      AppNavigation.push(
+                          context, ProductsPage(categoryName: category[i]));
+                    },
+                    child: Material(
+                      borderRadius: BorderRadius.circular(20),
+                      color: AppColors.primaryColor,
+                      elevation: 8,
+                      child: Center(
+                        child: Text(
+                          category[i],
+                          style: const TextStyle(
+                            color: Colors.white,
+                            fontWeight: FontWeight.w200,
+                            fontSize: 18,
+                          ),
+                          textAlign: TextAlign.center,
                         ),
-                        textAlign: TextAlign.center,
                       ),
                     ),
-                  ),
-                );
-              },
-            );
+                  );
+                },
+              );
+            });
           }
         },
         error: (error, e) {
