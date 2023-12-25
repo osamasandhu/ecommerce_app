@@ -20,6 +20,8 @@ class ProductModel {
     required this.rating,
   });
 
+  ///Convert DTO to Model
+
   factory ProductModel.fromDto(ProductDTO dto) {
     return ProductModel(
       id: dto.id,
@@ -32,6 +34,7 @@ class ProductModel {
     );
   }
 
+  ///Convert Model to DTO
   ProductDTO transform() {
     return ProductDTO(
       id: id,

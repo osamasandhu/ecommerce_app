@@ -14,7 +14,8 @@ class DialogError implements Exception {
     debugPrint('E : ${error.message}');
     title = 'Error';
     description = '';
-    if (error is DioError) {
+    // if (error is DioError) {
+    if (error is DioException) {
       if ((error.response?.statusCode ?? 0) == 401) {
         description = 'You have entered an invalid username or password.';
       } else if ((error.response?.statusCode ?? 0) == 406) {

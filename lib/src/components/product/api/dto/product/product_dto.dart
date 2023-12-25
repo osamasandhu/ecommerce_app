@@ -20,15 +20,4 @@ class ProductDTO with _$ProductDTO {
   factory ProductDTO.fromJson(Map<String, dynamic> json) =>
       _$ProductDTOFromJson(json);
 
-  // ProductModel transform() {
-  //   return ProductModel(
-  //     id: id,
-  //     title: title,
-  //     price: price,
-  //     description: description,
-  //     image: image,
-  //     category: category,
-  //     rating: rating.transform(),
-  //   );
-  // }
 }

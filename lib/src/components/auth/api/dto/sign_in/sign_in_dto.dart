@@ -14,6 +14,6 @@ class SignInDTO with _$SignInDTO {
 
   factory SignInDTO.fromJson(Json json) => _$SignInDTOFromJson(json);
 
-  @override
-  Map<String, dynamic> toJson() => super.toJson();
+  // @override
+  // Map<String, dynamic> toJson() => super.toJson();
 }

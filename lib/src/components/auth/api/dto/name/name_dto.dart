@@ -14,6 +14,6 @@ class NameDTO with _$NameDTO {
 
   factory NameDTO.fromJson(Json json) => _$NameDTOFromJson(json);
 
-  @override
-  Map<String, dynamic> toJson() => super.toJson();
+  // @override
+  // Map<String, dynamic> toJson() => super.toJson();
 }

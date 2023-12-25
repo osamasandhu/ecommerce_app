@@ -128,7 +128,9 @@ class _SignUpPageState extends State<SignUpPage> {
         }
       }
     } catch (e) {
-      showDioError(context, e);
+      if (mounted) {
+        showDioError(context, e);
+      }
     }
   }
 

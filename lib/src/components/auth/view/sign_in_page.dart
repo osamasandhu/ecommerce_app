@@ -92,7 +92,7 @@ class _SignInPageState extends State<SignInPage> {
           );
         }
       } catch (e) {
-        showDioError(context, e);
+        if (mounted) showDioError(context, e);
       }
     }
   }
