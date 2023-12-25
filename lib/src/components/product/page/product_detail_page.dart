@@ -1,12 +1,14 @@
-import 'package:ecommerce_app/src/base/app_data.dart';
+import 'package:ecommerce_app/app_data.dart';
 import 'package:ecommerce_app/src/components/cart/mixing/cart_mixing.dart';
 import 'package:ecommerce_app/src/components/cart/model/cart_model.dart';
-import 'package:ecommerce_app/src/components/cart/page/cart_page.dart';
+import 'package:ecommerce_app/src/components/cart/provider/cart_provider.dart';
+import 'package:ecommerce_app/src/components/cart/widgets/cart.dart';
 import 'package:ecommerce_app/src/components/product/model/product_model.dart';
-import 'package:ecommerce_app/src/components/product/provider/count_provider.dart';
-import 'package:ecommerce_app/src/utils/color.dart';
-import 'package:ecommerce_app/src/utils/nav.dart';
-import 'package:ecommerce_app/src/widgets/error.dart';
+import 'package:ecommerce_app/src/components/product/provider/count/count_product_provider.dart';
+import 'package:ecommerce_app/src/components/product/widgets/add_remove_button.dart';
+import 'package:ecommerce_app/src/helpers/color.dart';
+import 'package:ecommerce_app/src/route/nav.dart';
+import 'package:ecommerce_app/src/widgets/dialog_error.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -82,7 +84,7 @@ class _ProductDetailPageState extends ConsumerState<ProductDetailPage> {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                _buildButton(
+                AddRemoveButtonWidget(
                   onTap: () {
                     if (count > 1) {
                       ref.read(counterValueProvider.notifier).decrement();
@@ -96,7 +98,7 @@ class _ProductDetailPageState extends ConsumerState<ProductDetailPage> {
                     textAlign: TextAlign.center,
                   ),
                 ),
-                _buildButton(
+                AddRemoveButtonWidget(
                   onTap: () {
                     ref.read(counterValueProvider.notifier).increment();
                   },
@@ -151,49 +153,29 @@ class _ProductDetailPageState extends ConsumerState<ProductDetailPage> {
     );
   }
 
-  // onSubmitCart(int count) async {
-  //   try {
-  //     await Awaiter.process(
-  //       future: AppApi().addCartProduct(
-  //         CartModel(
-  //           userId: 1,
-  //           date: DateTime.now(),
-  //           products: [
-  //             CartProductsModel(
-  //               productId: widget.productModel.id,
-  //               quantity: count,
-  //             ),
-  //           ],
-  //         ),
-  //       ),
-  //       context: context,
-  //       arguments: 'Loading',
-  //     );
-  //   } catch (e) {
-  //     print(e.toString());
-  //     showDioError(context, e);
-  //   }
-  // }
-
-  Widget _buildButton(
-      {IconData? icon, required VoidCallback onTap, Color? color}) {
-    return TextButton(
-      // borderRadius: BorderRadius.circular(120),
-      onPressed: onTap,
-      style: IconButton.styleFrom(
-        backgroundColor: color ?? Colors.red,
-        minimumSize: const Size(50, 50),
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(360),
-        ),
-      ),
-      child: Icon(
-        icon ?? Icons.remove,
-        color: Colors.white,
-      ),
-    );
-  }
-}
+// onSubmitCart(int count) async {
+//   try {
+//     await Awaiter.process(
+//       future: AppApi().addCartProduct(
+//         CartModel(
+//           userId: 1,
+//           date: DateTime.now(),
+//           products: [
+//             CartProductsModel(
+//               productId: widget.productModel.id,
+//               quantity: count,
+//             ),
+//           ],
+//         ),
+//       ),
+//       context: context,
+//       arguments: 'Loading',
+//     );
+//   } catch (e) {
+//     print(e.toString());
+//     showDioError(context, e);
+//   }
+// }
 
 // class ProductDetailPage extends ConsumerWidget {
 //   final ProductModel productModel;
@@ -328,45 +310,5 @@ class _ProductDetailPageState extends ConsumerState<ProductDetailPage> {
 //     );
 //   }
 // }
-class CartWidget extends ConsumerWidget {
-  const CartWidget({super.key});
-
-  @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final count = ref.watch(cartCounterProvider);
-
-    return IconButton(
-      onPressed: () {
-        AppData().isSignedIn
-            ? AppNavigation.push(context, const CartPage())
-            : ScaffoldMessenger.of(context).showSnackBar(
-                const SnackBar(
-                  content: Text('Persmision Required'),
-                ),
-              );
-      },
-      icon: Stack(
-        fit: StackFit.expand,
-        clipBehavior: Clip.none,
-        children: [
-          const Icon(Icons.shopping_cart),
-          Positioned(
-            left: -3,
-            top: 0,
-            child: count == 0
-                ? const SizedBox()
-                : Container(
-                    decoration: const BoxDecoration(
-                        color: Colors.blue, shape: BoxShape.circle),
-                    padding: const EdgeInsets.all(4),
-                    child: Text(
-                      count.toInt().toString(),
-                      style: const TextStyle(fontSize: 10),
-                    ),
-                  ),
-          )
-        ],
-      ),
-    );
-  }
 }
+

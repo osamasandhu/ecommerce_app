@@ -1,8 +1,9 @@
-import 'package:ecommerce_app/src/base/app_data.dart';
+import 'package:ecommerce_app/app_data.dart';
 import 'package:ecommerce_app/src/components/cart/model/cart_model.dart';
-import 'package:ecommerce_app/src/components/product/provider/count_provider.dart';
-import 'package:ecommerce_app/src/utils/nav.dart';
-import 'package:ecommerce_app/src/widgets/error.dart';
+import 'package:ecommerce_app/src/components/cart/provider/cart_provider.dart';
+import 'package:ecommerce_app/src/route/nav.dart';
+import 'package:ecommerce_app/src/widgets/dialog_error.dart';
+import 'package:ecommerce_app/src/widgets/no_record.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -24,7 +25,6 @@ class _CartPageState extends ConsumerState<CartPage> {
 
   @override
   Widget build(BuildContext context) {
-    // final cartCount = ref.watch(cartCounterProvider);
     return Scaffold(
       appBar: AppBar(
         title: const Text('Cart'),
@@ -45,7 +45,6 @@ class _CartPageState extends ConsumerState<CartPage> {
 
                       AppNavigation.pop(context);
                       ref.read(cartCounterProvider.notifier).dec();
-
                     });
                   },
                   child: Material(
@@ -63,8 +62,12 @@ class _CartPageState extends ConsumerState<CartPage> {
                             color: Colors.white,
                           ),
                           padding: const EdgeInsets.all(10),
-                          child: Image.network(cart[i].image,
-                              fit: BoxFit.fill, height: 70, width: 70),
+                          child: Image.network(
+                            cart[i].image,
+                            fit: BoxFit.fill,
+                            height: 70,
+                            width: 70,
+                          ),
                         ),
                         const SizedBox(width: 8),
                         Expanded(

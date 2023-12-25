@@ -1,4 +1,4 @@
-import 'package:ecommerce_app/src/utils/color.dart';
+import 'package:ecommerce_app/src/helpers/color.dart';
 import 'package:flutter/material.dart';
 
 class AppTextField extends StatelessWidget {

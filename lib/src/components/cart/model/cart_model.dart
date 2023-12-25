@@ -1,33 +1,59 @@
-// ignore_for_file: unnecessary_overrides
-
-import 'package:ecommerce_app/src/utils/const.dart';
-import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:ecommerce_app/src/components/cart/api/dto/cart_dto.dart';
 import 'package:hive/hive.dart';
 
 part 'cart_model.g.dart';
 
-part 'cart_model.freezed.dart';
+// @freezed
+@HiveType(typeId: 0)
+class CartModel extends HiveObject {
+  @HiveField(0)
+  final int? id;
+  @HiveField(1)
+  final int userId;
+  @HiveField(2)
+  final DateTime date;
+  @HiveField(3)
+  final int productId;
+  @HiveField(4)
+  final int quantity;
+  @HiveField(5)
+  final String title;
+  @HiveField(6)
+  final String image;
 
-@freezed
-class CartModel extends HiveObject with _$CartModel {
-  CartModel._();
+  CartModel({
+    this.id,
+    required this.userId,
+    required this.date,
+    required this.productId,
+    required this.quantity,
+    required this.title,
+    required this.image,
+  });
 
-  @HiveType(typeId: 0, adapterName: 'CartModelAdapter')
-  factory CartModel({
-    @HiveField(0) int? id,
-    @HiveField(1) required int userId,
-    @HiveField(2) required DateTime date,
-    @HiveField(3) required int productId,
-    @HiveField(4) required int quantity,
-    @HiveField(5) required String title,
-    @HiveField(6) required String image,
+  /// Converting DTO to model
+  factory CartModel.fromDTO(CartDTO dto) {
+    return CartModel(
+      userId: dto.userId,
+      date: dto.date,
+      productId: dto.productId,
+      quantity: dto.quantity,
+      title: dto.title,
+      image: dto.image,
+    );
+  }
 
-  }) = _CartModel;
-
-  factory CartModel.fromJson(Json json) => _$CartModelFromJson(json);
-
-  @override
-  Map<String, dynamic> toJson() => super.toJson();
+  /// Converting model to DTO
+  CartDTO transform() {
+    return CartDTO(
+      userId: userId,
+      date: date,
+      productId: productId,
+      quantity: quantity,
+      title: title,
+      image: image,
+    );
+  }
 }
 
 // @freezed

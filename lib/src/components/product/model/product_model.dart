@@ -1,33 +1,46 @@
-import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:ecommerce_app/src/components/product/api/dto/product/product_dto.dart';
+import 'package:ecommerce_app/src/components/product/model/rating_model.dart';
 
-part 'product_model.g.dart';
+class ProductModel {
+  int id;
+  String title;
+  double price;
+  String description;
+  String image;
+  String category;
+  RatingModel rating;
 
-part 'product_model.freezed.dart';
+  ProductModel({
+    required this.id,
+    required this.title,
+    required this.price,
+    required this.description,
+    required this.image,
+    required this.category,
+    required this.rating,
+  });
 
-@freezed
-class ProductModel with _$ProductModel {
-  factory ProductModel({
-    required int id,
-    required   String title,
-    required double price,
-    required  String description,
-    required String image,
-    required String category,
-    required  RatingModel rating,
-  }) = _ProductModel;
+  factory ProductModel.fromDto(ProductDTO dto) {
+    return ProductModel(
+      id: dto.id,
+      title: dto.title,
+      price: dto.price,
+      description: dto.description,
+      image: dto.image,
+      category: dto.category,
+      rating: RatingModel.fromRatingDTO(dto.rating),
+    );
+  }
 
-  factory ProductModel.fromJson(Map<String, dynamic> json) => _$ProductModelFromJson(json);
-}
-
-@freezed
-
-class RatingModel with _$RatingModel {
-
- factory RatingModel({
-    required int count,
-    required double rate,
-  })=_RatingModel;
-
- factory RatingModel.fromJson(Map<String, dynamic> json) => _$RatingModelFromJson(json);
-
+  ProductDTO transform() {
+    return ProductDTO(
+      id: id,
+      title: title,
+      price: price,
+      description: description,
+      image: image,
+      category: category,
+      rating: rating.transform(),
+    );
+  }
 }

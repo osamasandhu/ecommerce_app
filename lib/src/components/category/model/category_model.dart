@@ -1,16 +1,15 @@
-import 'package:ecommerce_app/src/utils/const.dart';
-import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:ecommerce_app/src/components/category/api/dto/category_model.dart';
 
-part 'category_model.g.dart';
+class CategoriesModel {
+  List<String> categoryName;
 
-part 'category_model.freezed.dart';
+  CategoriesModel({required this.categoryName});
 
-@freezed
-class CategoriesModel with _$CategoriesModel {
-  factory CategoriesModel({
-    required List<String> categoryName,
-  }) = _CategoriesModel;
+  factory CategoriesModel.fromCategoriesDTO(CategoriesDTO dto) {
+    return CategoriesModel(categoryName: dto.categoryName);
+  }
 
-  factory CategoriesModel.fromJson(Json json) =>
-      _$CategoriesModelFromJson(json);
+  CategoriesDTO transform() {
+    return CategoriesDTO(categoryName: categoryName);
+  }
 }
