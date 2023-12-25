@@ -1,11 +1,11 @@
-import 'package:ecommerce_app/src/components/cart/mixing/cart_mixing.dart';
 import 'package:ecommerce_app/src/components/cart/model/cart_model.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import 'src/components/cart/mixing/cart_mixing.dart';
+
 ///Local Storage
 class AppData with CartProductMixing {
-  // static late Box _user;
 
   static late SharedPreferences _preferences;
 
@@ -14,10 +14,6 @@ class AppData with CartProductMixing {
     await Hive.initFlutter();
 
     Hive.registerAdapter(CartModelAdapter());
-    // Hive.registerAdapter(CartProductsModelAdapter());
-
-    // _user = await Hive.openBox('userBox');
-    // print(accessToken);
     await CartProductMixing.initialize();
   }
 
@@ -32,20 +28,3 @@ class AppData with CartProductMixing {
   bool get isSignedIn => getToken.isNotEmpty;
 
 }
-
-///Access Token Using Hive
-//  String token = 'access_token';
-
-// Future setToken(String value) async {
-//   return await _user.put(token, value);
-// }
-//
-// getToken() => _user.get(token);
-//
-// bool get isLoggedIn {
-//   if (getToken() == null) {
-//     return true;
-//   } else {
-//     return false;
-//   }
-// }
