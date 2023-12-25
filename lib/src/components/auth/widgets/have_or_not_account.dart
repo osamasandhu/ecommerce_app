@@ -1,4 +1,4 @@
-import 'package:ecommerce_app/src/utils/color.dart';
+import 'package:ecommerce_app/src/helpers/color.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
@@ -29,15 +29,13 @@ class _HaveOrNotAccountState extends State<HaveOrNotAccount> {
           text: TextSpan(
             text: widget.haveText,
             style: DefaultTextStyle.of(context).style,
-            // style: const TextStyle(
-            //   fontWeight: FontWeight.w400,
-            // ),
             children: [
               TextSpan(
                   text: widget.authText,
                   style: TextStyle(
                     color: AppColors.primaryColor,
-                    fontWeight: FontWeight.bold,fontSize: 16
+                    fontWeight: FontWeight.bold,
+                    fontSize: 16,
                   ),
                   recognizer: TapGestureRecognizer()..onTap = widget.onTap)
             ],

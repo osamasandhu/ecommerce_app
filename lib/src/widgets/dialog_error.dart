@@ -1,6 +1,6 @@
-import 'package:ecommerce_app/src/services/dio_error.dart';
-import 'package:ecommerce_app/src/utils/color.dart';
-import 'package:ecommerce_app/src/utils/nav.dart';
+import 'package:ecommerce_app/src/route/nav.dart';
+import 'package:ecommerce_app/src/shared/dio_error.dart';
+import 'package:ecommerce_app/src/widgets/data_loading.dart';
 import 'package:flutter/material.dart';
 
 circularProgressWidget(BuildContext context) {
@@ -49,39 +49,5 @@ showDioError(BuildContext context, var e) {
   );
 }
 
-class NoRecordWidget extends StatelessWidget {
-  const NoRecordWidget({Key? key}) : super(key: key);
 
-  @override
-  Widget build(BuildContext context) {
-    return Center(
-      child: Text(
-        'No Record found',
-        style: TextStyle(
-          color: AppColors.primaryColor,
-          fontWeight: FontWeight.bold,
-          fontSize: 24,
-        ),
-      ),
-    );
-  }
-}
 
-class DataLoading extends StatelessWidget {
-  final Color? color;
-
-  const DataLoading({
-    Key? key,
-    this.color,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Center(
-      child: CircularProgressIndicator(
-        color: AppColors.primaryColor,
-        strokeWidth: 2.5,
-      ),
-    );
-  }
-}
