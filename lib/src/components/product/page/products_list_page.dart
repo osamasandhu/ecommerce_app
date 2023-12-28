@@ -2,10 +2,12 @@ import 'package:ecommerce_app/src/components/cart/widgets/cart.dart';
 import 'package:ecommerce_app/src/components/product/page/product_detail_page.dart';
 import 'package:ecommerce_app/src/components/product/provider/future/future_provider.dart';
 import 'package:ecommerce_app/src/route/nav.dart';
+import 'package:ecommerce_app/src/helpers/route_names.dart';
 import 'package:ecommerce_app/src/widgets/data_loading.dart';
 import 'package:ecommerce_app/src/widgets/no_record.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 
 class ProductsPage extends ConsumerWidget {
   final String categoryName;
@@ -29,13 +31,14 @@ class ProductsPage extends ConsumerWidget {
             return ListView.separated(
               padding: const EdgeInsets.all(20),
               itemBuilder: (c, i) {
-                return GestureDetector(
+                return InkWell(
+                  borderRadius: BorderRadius.circular(10),
                   onTap: () {
-                    AppNavigation.push(
-                        context,
-                        ProductDetailPage(
-                          productModel: product[i],
-                        ));
+                    context.goNamed(
+                      AppRoute.productDetail,
+                      pathParameters: {'id': product[i].id.toString()},
+                      // extra: product[i],
+                    );
                   },
                   child: Material(
                     borderRadius: BorderRadius.circular(10),

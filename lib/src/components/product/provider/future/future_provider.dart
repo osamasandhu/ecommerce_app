@@ -11,13 +11,16 @@ Future<List<ProductModel>> getProducts(
     GetProductsRef ref, String category) async {
   var product = await ref.read(_appApiProvider).getProducts(category);
   return product.map((e) => ProductModel.fromDto(e)).toList();
+}
 
-
+@riverpod
+Future<ProductModel> getSingleProduct(GetSingleProductRef ref, int id) async {
+  var product = await ref.read(_appApiProvider).getSingleProduct(id);
+  return ProductModel.fromDto(product);
+}
 
 ///Old Without DTO
 // @riverpod
 // Future<List<ProductModel>> getProducts(GetProductsRef ref, String category) {
 //   return ref.read(_appApiProvider).getProducts(category);
 // }
-
-}

@@ -16,4 +16,7 @@ abstract class ProductApi {
 
   @GET('products/category/{name}')
   Future<List<ProductDTO>> getProducts(@Path('name') String name);
+
+  @GET('products/{id}')
+  Future<ProductDTO> getSingleProduct(@Path('id') int id);
 }
