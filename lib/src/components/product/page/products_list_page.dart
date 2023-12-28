@@ -1,10 +1,10 @@
 import 'package:ecommerce_app/src/components/cart/widgets/cart.dart';
-import 'package:ecommerce_app/src/components/product/page/product_detail_page.dart';
 import 'package:ecommerce_app/src/components/product/provider/future/future_provider.dart';
-import 'package:ecommerce_app/src/route/nav.dart';
 import 'package:ecommerce_app/src/helpers/route_names.dart';
 import 'package:ecommerce_app/src/widgets/data_loading.dart';
+import 'package:ecommerce_app/src/widgets/network_image.dart';
 import 'package:ecommerce_app/src/widgets/no_record.dart';
+import 'package:ecommerce_app/src/widgets/rating_count_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -29,16 +29,21 @@ class ProductsPage extends ConsumerWidget {
             return const NoRecordWidget();
           } else {
             return ListView.separated(
-              padding: const EdgeInsets.all(20),
+              padding: const EdgeInsets.all(10),
               itemBuilder: (c, i) {
                 return InkWell(
                   borderRadius: BorderRadius.circular(10),
                   onTap: () {
-                    context.goNamed(
+                    context.pushNamed(
                       AppRoute.productDetail,
                       pathParameters: {'id': product[i].id.toString()},
                       // extra: product[i],
                     );
+                    // context.goNamed(
+                    //   AppRoute.productDetail,
+                    //   pathParameters: {'id': product[i].id.toString()},
+                    //   // extra: product[i],
+                    // );
                   },
                   child: Material(
                     borderRadius: BorderRadius.circular(10),
@@ -46,22 +51,7 @@ class ProductsPage extends ConsumerWidget {
                     color: Colors.black.withOpacity(0.7),
                     child: Row(
                       children: [
-                        Container(
-                          decoration: const BoxDecoration(
-                            borderRadius: BorderRadius.only(
-                              topLeft: Radius.circular(10),
-                              bottomLeft: Radius.circular(10),
-                            ),
-                            color: Colors.white,
-                          ),
-                          padding: const EdgeInsets.all(10),
-                          child: Image.network(
-                            product[i].image,
-                            fit: BoxFit.fill,
-                            height: 70,
-                            width: 70,
-                          ),
-                        ),
+                        NetworkImageWidget(url: product[i].image),
                         const SizedBox(width: 8),
                         Expanded(
                           child: Column(
@@ -70,11 +60,12 @@ class ProductsPage extends ConsumerWidget {
                               Text(
                                 product[i].title,
                                 style: const TextStyle(
-                                  fontSize: 16,
+                                  fontSize: 12,
+                                  fontWeight: FontWeight.bold,
                                   color: Colors.white,
                                 ),
                                 overflow: TextOverflow.ellipsis,
-                                maxLines: 1,
+                                maxLines: 2,
                               ),
                               Padding(
                                 padding:
@@ -82,24 +73,28 @@ class ProductsPage extends ConsumerWidget {
                                 child: Text(
                                   "\$${product[i].price.toString()}",
                                   style: const TextStyle(
-                                    color: Colors.white,
-                                  ),
+                                      color: Colors.white, fontSize: 11),
                                 ),
                               ),
-                              Row(
-                                children: [
-                                  const Icon(Icons.star,
-                                      color: Colors.yellowAccent, size: 18),
-                                  const SizedBox(width: 5),
-                                  Text(
-                                    "${product[i].rating.rate.toString()} (${product[i].rating.count.toString()} )",
-                                    style: const TextStyle(
-                                      fontSize: 12,
-                                      color: Colors.white,
-                                    ),
-                                  ),
-                                ],
-                              )
+                              RatingWidget(
+                                count: product[i].rating.count,
+                                rating: product[i].rating.rate,
+                                color: Colors.white,
+                              ),
+                              // Row(
+                              //   children: [
+                              //     const Icon(Icons.star,
+                              //         color: Colors.yellowAccent, size: 16),
+                              //     const SizedBox(width: 5),
+                              //     Text(
+                              //       "${product[i].rating.rate.toString()} (${product[i].rating.count.toString()} )",
+                              //       style: const TextStyle(
+                              //         fontSize: 10,
+                              //         color: Colors.white,
+                              //       ),
+                              //     ),
+                              //   ],
+                              // )
                             ],
                           ),
                         ),
