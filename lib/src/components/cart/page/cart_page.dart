@@ -88,54 +88,6 @@ class _CartPageState extends ConsumerState<CartPage> {
                     ],
                   ),
                 );
-
-                InkWell(
-                  borderRadius: BorderRadius.circular(10),
-                  onLongPress: () {
-                    alertDialog(i: i);
-                  },
-                  child: Material(
-                    borderRadius: BorderRadius.circular(10),
-                    elevation: 8,
-                    color: Colors.black.withOpacity(0.7),
-                    child: Row(
-                      children: [
-                        NetworkImageWidget(url: cart[i].image),
-                        const SizedBox(width: 8),
-                        Expanded(
-                          child: Row(
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              Expanded(
-                                child: Text(
-                                  cart[i].title,
-                                  style: const TextStyle(
-                                      color: Colors.white,
-                                      fontSize: 11,
-                                      fontWeight: FontWeight.bold),
-                                  overflow: TextOverflow.ellipsis,
-                                  maxLines: 4,
-                                ),
-                              ),
-                              const SizedBox(width: 10),
-                              CircleAvatar(
-                                radius: 13,
-                                child: Text(
-                                  cart[i].quantity.toString(),
-                                  style: const TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 11,
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                        const SizedBox(width: 10)
-                      ],
-                    ),
-                  ),
-                );
               },
               separatorBuilder: (c, i) {
                 return const SizedBox(height: 20);
@@ -178,7 +130,11 @@ class _CartPageState extends ConsumerState<CartPage> {
                     context: context,
                     title: '${cart[i].title} removed from cart successfully',
                   );
+
+                  ///Removed from List
                   cart.removeAt(i);
+
+                  ///Removed from Local Storage
                   AppData().itemDelete(i);
                   setState(() {});
                   ref.read(cartCounterProvider.notifier).dec();

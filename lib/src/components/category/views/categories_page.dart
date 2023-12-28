@@ -1,8 +1,6 @@
 import 'package:ecommerce_app/src/components/cart/widgets/cart.dart';
 import 'package:ecommerce_app/src/components/category/provider/future_provider.dart';
-import 'package:ecommerce_app/src/components/product/page/products_list_page.dart';
 import 'package:ecommerce_app/src/helpers/color.dart';
-import 'package:ecommerce_app/src/route/nav.dart';
 import 'package:ecommerce_app/src/helpers/route_names.dart';
 import 'package:ecommerce_app/src/widgets/data_loading.dart';
 import 'package:ecommerce_app/src/widgets/no_record.dart';
@@ -38,9 +36,7 @@ class CategoriesPage extends ConsumerWidget {
                       ? 2
                       : constraint.maxWidth < 880
                           ? 4
-                          : constraint.maxWidth < 1050
-                              ? 5
-                              : 6,
+                          : 6,
                   crossAxisSpacing: 10,
                   mainAxisSpacing: 10,
                 ),
@@ -49,10 +45,8 @@ class CategoriesPage extends ConsumerWidget {
                   return InkWell(
                     borderRadius: BorderRadius.circular(20),
                     onTap: () {
-                      context.goNamed(AppRoute.productList,
+                      context.pushNamed(AppRoute.productList,
                           pathParameters: {'categoryName': category[i]});
-                      // AppNavigation.push(
-                      //     context, ProductsPage(categoryName: category[i]));
                     },
                     child: Material(
                       borderRadius: BorderRadius.circular(20),
@@ -62,9 +56,8 @@ class CategoriesPage extends ConsumerWidget {
                         child: Text(
                           category[i],
                           style: const TextStyle(
-                            color: Colors.white,
-                            fontWeight: FontWeight.w200,
-                            fontSize: 18,
+                            color: Colors.white,fontSize: 18,
+                            fontWeight: FontWeight.bold,
                           ),
                           textAlign: TextAlign.center,
                         ),

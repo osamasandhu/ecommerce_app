@@ -2,7 +2,6 @@ import 'package:ecommerce_app/src/components/auth/view/sign_in_page.dart';
 import 'package:ecommerce_app/src/components/auth/view/sign_up_page.dart';
 import 'package:ecommerce_app/src/components/cart/page/cart_page.dart';
 import 'package:ecommerce_app/src/components/category/views/categories_page.dart';
-import 'package:ecommerce_app/src/components/product/model/product_model.dart';
 import 'package:ecommerce_app/src/components/product/page/product_detail_page.dart';
 import 'package:ecommerce_app/src/components/product/page/products_list_page.dart';
 import 'package:ecommerce_app/src/widgets/page_not_found.dart';
@@ -11,6 +10,7 @@ import 'package:go_router/go_router.dart';
 
 final GoRouter appRoutes = GoRouter(
   errorBuilder: (c, i) => const PageNotFound(),
+  // initialLocation: '/category',
   routes: [
     ///SignIn Page
     GoRoute(
