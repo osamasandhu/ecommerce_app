@@ -1,12 +1,13 @@
 import 'package:ecommerce_app/app_data.dart';
-import 'package:ecommerce_app/src/components/auth/view/sign_in_page.dart';
 import 'package:ecommerce_app/src/helpers/default_behavior.dart';
+import 'package:ecommerce_app/src/route/go_route.dart';
 import 'package:ecommerce_app/src/theme/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:reusables/reusables.dart';
 
 void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
   Awaiter.defaultBehaviour = const DefaultAwaiterBehaviour();
   await AppData().initilize();
   runApp(const ProviderScope(child: MyApp()));
@@ -17,10 +18,11 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return MaterialApp.router(
       theme: AppTheme.themeData,
       debugShowCheckedModeBanner: false,
-      home: const SignInPage(),
+      // home: const SignInPage(),
+      routerConfig: appRoutes,
     );
   }
 }
