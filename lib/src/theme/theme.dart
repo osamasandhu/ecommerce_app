@@ -5,13 +5,14 @@ import 'package:google_fonts/google_fonts.dart';
 class AppTheme {
   static ThemeData get themeData {
     return ThemeData(
+      scaffoldBackgroundColor: Colors.white,
       useMaterial3: false,
-      textTheme: GoogleFonts.leckerliOneTextTheme(),
+      textTheme: GoogleFonts.b612MonoTextTheme(),
       appBarTheme: AppBarTheme(
         backgroundColor: AppColors.primaryColor,
         iconTheme: const IconThemeData(color: Colors.white),
         centerTitle: true,
-        titleTextStyle: GoogleFonts.leckerliOne(
+        titleTextStyle: GoogleFonts.b612Mono(
           fontWeight: FontWeight.w400,
           color: Colors.white,
           fontSize: 16,
@@ -26,9 +27,9 @@ class AppTheme {
           backgroundColor: Colors.white,
           minimumSize: const Size(double.infinity, 56),
           shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(15),
+            borderRadius: BorderRadius.circular(20),
           ),
-          textStyle: GoogleFonts.leckerliOne(
+          textStyle: GoogleFonts.b612Mono(
             ///Not Working
             ///Color is not changed
             // color: Colors.deepOrange,
