@@ -1,12 +1,24 @@
 import 'package:ecommerce_app/app_data.dart';
-import 'package:ecommerce_app/src/components/cart/model/cart_model.dart';
-import 'package:ecommerce_app/src/components/cart/provider/cart_provider.dart';
-import 'package:ecommerce_app/src/route/nav.dart';
-import 'package:ecommerce_app/src/widgets/dialog_error.dart';
-import 'package:ecommerce_app/src/widgets/no_record.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import 'package:ecommerce_app/src/components/cart/model/cart_model.dart';
+
+import 'package:ecommerce_app/src/components/cart/provider/cart_provider.dart';
+
+import 'package:ecommerce_app/src/route/nav.dart';
+
+import 'package:ecommerce_app/src/widgets/decorated_container.dart';
+
+import 'package:ecommerce_app/src/widgets/dialog_error.dart';
+
+import 'package:ecommerce_app/src/widgets/network_image.dart';
+
+import 'package:ecommerce_app/src/widgets/no_record.dart';
+
+import 'package:ecommerce_app/src/widgets/snack_bar.dart';
+
+import 'package:flutter/material.dart';
+
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class CartPage extends ConsumerStatefulWidget {
   const CartPage({super.key});
@@ -33,20 +45,54 @@ class _CartPageState extends ConsumerState<CartPage> {
       body: cart.isEmpty
           ? const NoRecordWidget()
           : ListView.separated(
-              padding: const EdgeInsets.all(20),
+              padding: const EdgeInsets.all(15),
               itemBuilder: (c, i) {
-                return GestureDetector(
-                  onTap: () {},
-                  onDoubleTap: () {
-                    circularProgressWidget(context);
-                    Future.delayed(const Duration(seconds: 2), () {
-                      cart.removeAt(i);
-                      AppData().itemDelete(i);
-                      setState(() {});
+                return DecoratedContainerWidget(
+                  onLongPress: () {
+                    alertDialog(i: i);
+                  },
+                  child: Row(
+                    children: [
+                      NetworkImageWidget(url: cart[i].image),
+                      const SizedBox(width: 8),
+                      Expanded(
+                        child: Row(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            Expanded(
+                              child: Text(
+                                cart[i].title,
+                                style: const TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 11,
+                                    fontWeight: FontWeight.bold),
+                                overflow: TextOverflow.ellipsis,
+                                maxLines: 4,
+                              ),
+                            ),
+                            const SizedBox(width: 10),
+                            CircleAvatar(
+                              radius: 12,
+                              child: Text(
+                                cart[i].quantity.toString(),
+                                style: const TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 10,
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      const SizedBox(width: 10)
+                    ],
+                  ),
+                );
 
-                      AppNavigation.pop(context);
-                      ref.read(cartCounterProvider.notifier).dec();
-                    });
+                InkWell(
+                  borderRadius: BorderRadius.circular(10),
+                  onLongPress: () {
+                    alertDialog(i: i);
                   },
                   child: Material(
                     borderRadius: BorderRadius.circular(10),
@@ -54,36 +100,21 @@ class _CartPageState extends ConsumerState<CartPage> {
                     color: Colors.black.withOpacity(0.7),
                     child: Row(
                       children: [
-                        Container(
-                          decoration: const BoxDecoration(
-                            borderRadius: BorderRadius.only(
-                              topLeft: Radius.circular(10),
-                              bottomLeft: Radius.circular(10),
-                            ),
-                            color: Colors.white,
-                          ),
-                          padding: const EdgeInsets.all(10),
-                          child: Image.network(
-                            cart[i].image,
-                            fit: BoxFit.fill,
-                            height: 70,
-                            width: 70,
-                          ),
-                        ),
+                        NetworkImageWidget(url: cart[i].image),
                         const SizedBox(width: 8),
                         Expanded(
                           child: Row(
-                            crossAxisAlignment: CrossAxisAlignment.start,
+                            crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
                               Expanded(
                                 child: Text(
                                   cart[i].title,
                                   style: const TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 12,
-                                  ),
+                                      color: Colors.white,
+                                      fontSize: 11,
+                                      fontWeight: FontWeight.bold),
                                   overflow: TextOverflow.ellipsis,
-                                  maxLines: 2,
+                                  maxLines: 4,
                                 ),
                               ),
                               const SizedBox(width: 10),
@@ -111,6 +142,52 @@ class _CartPageState extends ConsumerState<CartPage> {
               },
               itemCount: cart.length,
             ),
+    );
+  }
+
+  alertDialog({required int i}) {
+    return showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          content: Text(
+            "Are you sure you want to delete ${cart[i].title}?",
+            style: const TextStyle(fontSize: 12),
+          ),
+          actions: <Widget>[
+            TextButton(
+              child: const Text(
+                "No",
+                style: TextStyle(color: Colors.black),
+              ),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+            TextButton(
+              child: const Text(
+                "Yes",
+                style: TextStyle(color: Colors.red),
+              ),
+              onPressed: () {
+                circularProgressWidget(context);
+                Future.delayed(const Duration(seconds: 2), () {
+                  AppNavigation.pop(context);
+                  AppNavigation.pop(context);
+                  AppSnackBar.snackBarWidget(
+                    context: context,
+                    title: '${cart[i].title} removed from cart successfully',
+                  );
+                  cart.removeAt(i);
+                  AppData().itemDelete(i);
+                  setState(() {});
+                  ref.read(cartCounterProvider.notifier).dec();
+                });
+              },
+            ),
+          ],
+        );
+      },
     );
   }
 }

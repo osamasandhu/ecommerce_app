@@ -1,7 +1,6 @@
 import 'package:ecommerce_app/app_data.dart';
 import 'package:ecommerce_app/src/components/cart/api/api_request/cart_api.dart';
 import 'package:ecommerce_app/src/components/cart/model/cart_model.dart';
-import 'package:hive/hive.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'cart_provider.g.dart';

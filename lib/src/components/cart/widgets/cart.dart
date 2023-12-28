@@ -1,7 +1,5 @@
 import 'package:ecommerce_app/app_data.dart';
-import 'package:ecommerce_app/src/components/cart/page/cart_page.dart';
 import 'package:ecommerce_app/src/components/cart/provider/cart_provider.dart';
-import 'package:ecommerce_app/src/route/nav.dart';
 import 'package:ecommerce_app/src/helpers/route_names.dart';
 import 'package:ecommerce_app/src/widgets/snack_bar.dart';
 import 'package:flutter/material.dart';
@@ -18,8 +16,8 @@ class CartWidget extends ConsumerWidget {
     return IconButton(
       onPressed: () {
         AppData().isSignedIn
-            // ? AppNavigation.push(context, const CartPage())
-            ? context.goNamed(AppRoute.cart)
+            ? context.pushNamed(AppRoute.cart)
+            // ? context.goNamed(AppRoute.cart)
             : AppSnackBar.snackBarWidget(
                 context: context,
               );
