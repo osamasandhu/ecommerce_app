@@ -146,7 +146,7 @@ class _SignUpPageState extends State<SignUpPage> {
           email: emailController.text,
           password: passwordController.text,
           username: userNameController.text,
-        ).transform(),
+        ).fromModelToDTO(),
       );
       debugPrint("id : $v");
     } catch (_) {

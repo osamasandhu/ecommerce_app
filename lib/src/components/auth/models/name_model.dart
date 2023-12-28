@@ -9,14 +9,14 @@ class NameModel {
     required this.firstname,
   });
 
-  factory NameModel.fromNameDTO(NameDTO dto) {
+  factory NameModel.fromDTOtoModel(NameDTO dto) {
     return NameModel(
       lastname: dto.lastname,
       firstname: dto.firstname,
     );
   }
 
-  NameDTO transform() {
+  NameDTO fromModelToDTO() {
     return NameDTO(
       firstname: firstname,
       lastname: lastname,

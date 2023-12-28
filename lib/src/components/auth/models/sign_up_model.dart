@@ -14,18 +14,22 @@ class SignUpModel {
     required this.name,
   });
 
-  factory SignUpModel.fromSignUpDTO(SignUpDTO dto) {
+  factory SignUpModel.fromDTOtoModel(SignUpDTO dto) {
     return SignUpModel(
       username: dto.username,
       email: dto.email,
       password: dto.password,
-      name: NameModel.fromNameDTO(dto.name),
+      // name: NameModel.fromNameDTO(dto.name),
+
+      name: NameModel.fromDTOtoModel(dto.name),
     );
   }
 
-  SignUpDTO transform() {
+  SignUpDTO fromModelToDTO() {
     return SignUpDTO(
-        name: name.transform(),
+        // name: name.transform(),
+
+        name: name.fromModelToDTO(),
         email: email,
         password: password,
         username: username);
@@ -59,3 +63,26 @@ class SignUpModel {
 //   @override
 //   Map<String, dynamic> toJson() => super.toJson();
 // }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// Convert DTO to MOdel
+
+

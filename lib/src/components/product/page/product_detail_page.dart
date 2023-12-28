@@ -112,9 +112,12 @@ class ProductDetailPage extends ConsumerWidget {
                 ElevatedButton(
                   onPressed: () async {
                     List<CartModel> cartModel = AppData().getCartProducts();
-                    print("To BE Added $id");
 
-//////////////////////////////////
+                    // var val = AppData()
+                    //     .getCartProducts()
+                    //     .where((element) => element.productId == id);
+                    // val.isNotEmpty;
+                    // val.first.productId==id;
                     var idd =
                         cartModel.where((element) => element.productId == id);
                     if (cartModel.isNotEmpty &&
@@ -151,15 +154,11 @@ class ProductDetailPage extends ConsumerWidget {
                         },
                       );
 
-                      AppData().setToken('Token add');
+                      AppData().setToken('Cart is not Empty');
                     }
-                    print(cartModel.length);
-                  }, // onPressed: () => onSubmitCart(count),
+                  },
                   child: const Text(
                     'Add to cart',
-                    style: TextStyle(
-                        // color: Colors.deepOrange,
-                        ),
                   ),
                 )
               ],

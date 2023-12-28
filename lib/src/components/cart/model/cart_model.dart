@@ -32,7 +32,7 @@ class CartModel extends HiveObject {
   });
 
   /// Converting DTO to model
-  factory CartModel.fromDTO(CartDTO dto) {
+  factory CartModel.fromDTOtoModel(CartDTO dto) {
     return CartModel(
       userId: dto.userId,
       date: dto.date,
@@ -44,7 +44,7 @@ class CartModel extends HiveObject {
   }
 
   /// Converting model to DTO
-  CartDTO transform() {
+  CartDTO fromModelToDTO() {
     return CartDTO(
       userId: userId,
       date: date,

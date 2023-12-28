@@ -5,11 +5,11 @@ class CategoriesModel {
 
   CategoriesModel({required this.categoryName});
 
-  factory CategoriesModel.fromCategoriesDTO(CategoriesDTO dto) {
+  factory CategoriesModel.fromDTOtoModel(CategoriesDTO dto) {
     return CategoriesModel(categoryName: dto.categoryName);
   }
 
-  CategoriesDTO transform() {
+  CategoriesDTO fromModelToDTO() {
     return CategoriesDTO(categoryName: categoryName);
   }
 }

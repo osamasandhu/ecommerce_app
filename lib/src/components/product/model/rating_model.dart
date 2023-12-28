@@ -9,11 +9,11 @@ class RatingModel {
     required this.rate,
   });
 
-  factory RatingModel.fromRatingDTO(RatingDTO dto) {
+  factory RatingModel.fromDTOtoModel(RatingDTO dto) {
     return RatingModel(count: dto.count, rate: dto.rate);
   }
 
-  RatingDTO transform() {
+  RatingDTO fromModelToDTO() {
     return RatingDTO(count: count, rate: rate);
   }
 }

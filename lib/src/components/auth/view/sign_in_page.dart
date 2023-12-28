@@ -100,7 +100,7 @@ class _SignInPageState extends State<SignInPage> {
         SignInModel(
           username: userNameController.text,
           password: passwordController.text,
-        ).toDTO(),
+        ).fromModelToDTO(),
       );
     } catch (_) {
       rethrow;

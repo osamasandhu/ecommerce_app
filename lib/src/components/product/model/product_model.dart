@@ -22,7 +22,7 @@ class ProductModel {
 
   ///Convert DTO to Model
 
-  factory ProductModel.fromDto(ProductDTO dto) {
+  factory ProductModel.fromDTOtoModel(ProductDTO dto) {
     return ProductModel(
       id: dto.id,
       title: dto.title,
@@ -30,12 +30,12 @@ class ProductModel {
       description: dto.description,
       image: dto.image,
       category: dto.category,
-      rating: RatingModel.fromRatingDTO(dto.rating),
+      rating: RatingModel.fromDTOtoModel(dto.rating),
     );
   }
 
   ///Convert Model to DTO
-  ProductDTO transform() {
+  ProductDTO fromModelToDTO() {
     return ProductDTO(
       id: id,
       title: title,
@@ -43,7 +43,7 @@ class ProductModel {
       description: description,
       image: image,
       category: category,
-      rating: rating.transform(),
+      rating: rating.fromModelToDTO(),
     );
   }
 }

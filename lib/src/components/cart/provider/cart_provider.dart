@@ -10,9 +10,9 @@ final _apiProvider = Provider((ref) => CartApi());
 
 @riverpod
 Future<List<CartModel>> getCartItems(GetCartItemsRef ref, int userId) async {
-  final data = await ref.read(_apiProvider).getCartList(userId);
+  final cartItems = await ref.read(_apiProvider).getCartList(userId);
 
-  return data.map((e) => CartModel.fromDTO(e)).toList();
+  return cartItems.map((e) => CartModel.fromDTOtoModel(e)).toList();
 }
 
 @Riverpod(keepAlive: true)
