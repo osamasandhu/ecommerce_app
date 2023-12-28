@@ -2,11 +2,11 @@ import 'package:ecommerce_app/src/components/auth/api/api_request/auth_api.dart'
 import 'package:ecommerce_app/src/components/auth/models/name_model.dart';
 import 'package:ecommerce_app/src/components/auth/models/sign_up_model.dart';
 import 'package:ecommerce_app/src/components/auth/widgets/have_or_not_account.dart';
-import 'package:ecommerce_app/src/components/category/views/categories_page.dart';
-import 'package:ecommerce_app/src/route/nav.dart';
+import 'package:ecommerce_app/src/helpers/route_names.dart';
 import 'package:ecommerce_app/src/widgets/dialog_error.dart';
 import 'package:ecommerce_app/src/widgets/text_field.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:reusables/utils/awaiter.dart';
 
 class SignUpPage extends StatefulWidget {
@@ -99,7 +99,7 @@ class _SignUpPageState extends State<SignUpPage> {
                 ),
                 HaveOrNotAccount(
                   onTap: () {
-                    AppNavigation.pop(context);
+                    context.goNamed(AppRoute.signIn);
                   },
                   authText: "Sign-in",
                   haveText: "Already have account? ",
@@ -121,10 +121,11 @@ class _SignUpPageState extends State<SignUpPage> {
           arguments: 'Loading',
         );
         if (mounted) {
-          await AppNavigation.push(
-            context,
-            const CategoriesPage(),
-          );
+          context.goNamed(AppRoute.category);
+          // await AppNavigation.push(
+          //   context,
+          //   const CategoriesPage(),
+          // );
         }
       }
     } catch (e) {

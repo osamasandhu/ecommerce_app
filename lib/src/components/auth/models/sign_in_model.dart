@@ -10,7 +10,7 @@ class SignInModel {
     return SignInModel(username: dto.username, password: dto.password);
   }
 
-  SignInDTO transform() {
+  SignInDTO toDTO() {
     return SignInDTO(username: username, password: password);
   }
 }

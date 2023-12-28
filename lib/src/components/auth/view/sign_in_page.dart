@@ -1,12 +1,11 @@
 import 'package:ecommerce_app/src/components/auth/api/api_request/auth_api.dart';
 import 'package:ecommerce_app/src/components/auth/models/sign_in_model.dart';
-import 'package:ecommerce_app/src/components/auth/view/sign_up_page.dart';
 import 'package:ecommerce_app/src/components/auth/widgets/have_or_not_account.dart';
-import 'package:ecommerce_app/src/components/category/views/categories_page.dart';
-import 'package:ecommerce_app/src/route/nav.dart';
+import 'package:ecommerce_app/src/helpers/route_names.dart';
 import 'package:ecommerce_app/src/widgets/dialog_error.dart';
 import 'package:ecommerce_app/src/widgets/text_field.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:reusables/reusables.dart';
 
 class SignInPage extends StatefulWidget {
@@ -64,7 +63,7 @@ class _SignInPageState extends State<SignInPage> {
                 ),
                 HaveOrNotAccount(
                   onTap: () {
-                    AppNavigation.push(context, const SignUpPage());
+                    context.goNamed(AppRoute.signup);
                   },
                   authText: "Sign-up",
                   haveText: "Don't have account? ",
@@ -86,12 +85,10 @@ class _SignInPageState extends State<SignInPage> {
           arguments: 'Loading',
         );
         if (mounted) {
-          await AppNavigation.pushReplacement(
-            context,
-            const CategoriesPage(),
-          );
+          context.goNamed(AppRoute.category);
         }
       } catch (e) {
+        print(e);
         if (mounted) showDioError(context, e);
       }
     }
@@ -103,10 +100,35 @@ class _SignInPageState extends State<SignInPage> {
         SignInModel(
           username: userNameController.text,
           password: passwordController.text,
-        ).transform(),
+        ).toDTO(),
       );
     } catch (_) {
       rethrow;
     }
   }
+}
+
+///Go Route Practice
+
+Widget goRoutePractice() {
+  return HaveOrNotAccount(
+    onTap: () {
+      // String name = "Osama";
+
+      ///Named Go Routes with query params
+      // context.goNamed(RouteNames.signup,
+      //     queryParameters: {'name': name});
+
+      ///Named Go Routes with params
+      // context.goNamed(RouteNames.signup,
+      //     pathParameters: {'name': name});
+
+      ///Simple Go Routes
+      //  context.go('/sign_up/$name');
+
+      // GoRouter.of(context).go('sign_up');
+    },
+    authText: "Sign-up",
+    haveText: "Don't have account? ",
+  );
 }
