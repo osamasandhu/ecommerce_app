@@ -3,10 +3,12 @@ import 'package:ecommerce_app/src/components/category/provider/future_provider.d
 import 'package:ecommerce_app/src/components/product/page/products_list_page.dart';
 import 'package:ecommerce_app/src/helpers/color.dart';
 import 'package:ecommerce_app/src/route/nav.dart';
+import 'package:ecommerce_app/src/helpers/route_names.dart';
 import 'package:ecommerce_app/src/widgets/data_loading.dart';
 import 'package:ecommerce_app/src/widgets/no_record.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 
 class CategoriesPage extends ConsumerWidget {
   const CategoriesPage({super.key});
@@ -34,9 +36,11 @@ class CategoriesPage extends ConsumerWidget {
                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: constraint.maxWidth < 550
                       ? 2
-                      : constraint.maxWidth < 780
+                      : constraint.maxWidth < 880
                           ? 4
-                          : 8,
+                          : constraint.maxWidth < 1050
+                              ? 5
+                              : 6,
                   crossAxisSpacing: 10,
                   mainAxisSpacing: 10,
                 ),
@@ -45,8 +49,10 @@ class CategoriesPage extends ConsumerWidget {
                   return InkWell(
                     borderRadius: BorderRadius.circular(20),
                     onTap: () {
-                      AppNavigation.push(
-                          context, ProductsPage(categoryName: category[i]));
+                      context.goNamed(AppRoute.productList,
+                          pathParameters: {'categoryName': category[i]});
+                      // AppNavigation.push(
+                      //     context, ProductsPage(categoryName: category[i]));
                     },
                     child: Material(
                       borderRadius: BorderRadius.circular(20),

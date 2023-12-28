@@ -20,7 +20,7 @@ mixin CartProductMixing {
     return _cartBox!.values.toList();
   }
 
-  ///Delete Data to cart locally
+  ///Delete Data from cart locally
   itemDelete(int i) {
     return _cartBox!.deleteAt(i);
   }
