@@ -19,7 +19,7 @@ class NetworkImageWidget extends StatelessWidget {
       padding: const EdgeInsets.all(10),
       child: Image.network(
         url,
-        fit: BoxFit.fill,
+        // fit: BoxFit.fill,
         height: 70,
         width: 70,
         loadingBuilder: (BuildContext context, Widget child,

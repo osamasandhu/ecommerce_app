@@ -2,6 +2,8 @@ import 'package:ecommerce_app/src/components/auth/api/api_request/auth_api.dart'
 import 'package:ecommerce_app/src/components/auth/models/sign_in_model.dart';
 import 'package:ecommerce_app/src/components/auth/widgets/have_or_not_account.dart';
 import 'package:ecommerce_app/src/helpers/route_names.dart';
+import 'package:ecommerce_app/src/routes/app_navigation.dart';
+import 'package:ecommerce_app/src/routes/app_pages.dart';
 import 'package:ecommerce_app/src/widgets/dialog_error.dart';
 import 'package:ecommerce_app/src/widgets/text_field.dart';
 import 'package:flutter/material.dart';
@@ -63,7 +65,9 @@ class _SignInPageState extends State<SignInPage> {
                 ),
                 HaveOrNotAccount(
                   onTap: () {
-                    context.goNamed(AppRoute.signup);
+                    // context.goNamed(AppRoute.signup);
+
+                    AppNavigation.to(AppPages.signUp);
                   },
                   authText: "Sign-up",
                   haveText: "Don't have account? ",
@@ -85,7 +89,8 @@ class _SignInPageState extends State<SignInPage> {
           arguments: 'Loading',
         );
         if (mounted) {
-          context.goNamed(AppRoute.category);
+          AppNavigation.to(AppPages.category);
+          // context.goNamed(AppRoute.category);
         }
       } catch (e) {
         print(e);

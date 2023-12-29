@@ -3,6 +3,8 @@ import 'package:ecommerce_app/src/components/auth/models/name_model.dart';
 import 'package:ecommerce_app/src/components/auth/models/sign_up_model.dart';
 import 'package:ecommerce_app/src/components/auth/widgets/have_or_not_account.dart';
 import 'package:ecommerce_app/src/helpers/route_names.dart';
+import 'package:ecommerce_app/src/routes/app_navigation.dart';
+import 'package:ecommerce_app/src/routes/app_pages.dart';
 import 'package:ecommerce_app/src/widgets/dialog_error.dart';
 import 'package:ecommerce_app/src/widgets/text_field.dart';
 import 'package:flutter/material.dart';
@@ -99,7 +101,8 @@ class _SignUpPageState extends State<SignUpPage> {
                 ),
                 HaveOrNotAccount(
                   onTap: () {
-                    context.goNamed(AppRoute.signIn);
+                    AppNavigation.pop();
+                    // context.goNamed(AppRoute.signIn);
                   },
                   authText: "Sign-in",
                   haveText: "Already have account? ",
@@ -121,7 +124,8 @@ class _SignUpPageState extends State<SignUpPage> {
           arguments: 'Loading',
         );
         if (mounted) {
-          context.goNamed(AppRoute.category);
+          AppNavigation.to(AppPages.category);
+          // context.goNamed(AppRoute.category);
           // await AppNavigation.push(
           //   context,
           //   const CategoriesPage(),

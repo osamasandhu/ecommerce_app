@@ -8,8 +8,10 @@ import 'package:ecommerce_app/src/components/product/provider/future/future_prov
 import 'package:ecommerce_app/src/components/product/widgets/add_remove_row.dart';
 import 'package:ecommerce_app/src/helpers/color.dart';
 import 'package:ecommerce_app/src/route/nav.dart';
+import 'package:ecommerce_app/src/routes/app_navigation.dart';
 import 'package:ecommerce_app/src/widgets/data_loading.dart';
 import 'package:ecommerce_app/src/widgets/dialog_error.dart';
+import 'package:ecommerce_app/src/widgets/network_image.dart';
 import 'package:ecommerce_app/src/widgets/rating_count_widget.dart';
 import 'package:ecommerce_app/src/widgets/snack_bar.dart';
 import 'package:flutter/material.dart';
@@ -37,10 +39,17 @@ class ProductDetailPage extends ConsumerWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Center(
-                  child: Image.network(product.image,
-                      height: MediaQuery.of(context).size.height / 3.4),
+                SizedBox(
+                  width: double.infinity,
+                  height: MediaQuery.of(context).size.height / 3.4,
+                  child: NetworkImageWidget(
+                    url: product.image,
+                  ),
                 ),
+                // Center(
+                //   child: Image.network(product.image,
+                //       height: MediaQuery.of(context).size.height / 3.4),
+                // ),
                 const Divider(),
                 ListTile(
                     contentPadding: EdgeInsets.zero,
@@ -66,32 +75,36 @@ class ProductDetailPage extends ConsumerWidget {
                       rating: product.rating.rate,
                     )),
                 const Divider(),
-                Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 10),
-                  child: Text(
-                    product.description,
-                    style: const TextStyle(
-                      fontSize: 12,
-                    ),
+                Text(
+                  product.description,
+                  style: const TextStyle(
+                    fontSize: 12,
                   ),
                 ),
-                AddRemoveRow(
-                  itemCount: itemCount,
-                  ref: ref,
-                  context: context,
+                Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 20),
+                  child: AddRemoveRow(
+                    itemCount: itemCount,
+                    ref: ref,
+                    context: context,
+                  ),
                 ),
-                const SizedBox(height: 20),
-                ElevatedButton(
-                  onPressed: () {
-                    _onTap(
-                      context: context,
-                      product: product,
-                      ref: ref,
-                      itemCount: itemCount,
-                    );
-                  },
-                  child: const Text(
-                    'Add to cart',
+                AbsorbPointer(
+                  absorbing: itemCount == 0 ? true : false,
+                  child: ElevatedButton(
+                    onPressed: itemCount == 0
+                        ? () {}
+                        : () {
+                            _onTap(
+                              context: context,
+                              product: product,
+                              ref: ref,
+                              itemCount: itemCount,
+                            );
+                          },
+                    child: const Text(
+                      'Add to cart',
+                    ),
                   ),
                 )
               ],
@@ -138,7 +151,7 @@ class ProductDetailPage extends ConsumerWidget {
             ),
           );
 
-          AppNavigation.pop(context);
+          Navigator.of(context).pop();
           ref.read(cartCounterProvider.notifier).inc();
 
           AppSnackBar.snackBarWidget(
