@@ -43,40 +43,28 @@ class ProductDetailPage extends ConsumerWidget {
                 ),
                 const Divider(),
                 ListTile(
-                  contentPadding: EdgeInsets.zero,
-                  title: Text(
-                    product.title,
-                    style: const TextStyle(
-                        fontSize: 14, fontWeight: FontWeight.bold),
-                  ),
-                  subtitle: Padding(
-                    padding: const EdgeInsets.only(top: 10),
-                    child: Text(
-                      "Price : \$${product.price.toString()}",
-                      style: TextStyle(
+                    contentPadding: EdgeInsets.zero,
+                    title: Text(
+                      product.title,
+                      style: const TextStyle(
+                        fontSize: 14,
                         fontWeight: FontWeight.bold,
-                        color: AppColors.primaryColor,
                       ),
                     ),
-                  ),
-                  trailing:
-                  RatingWidget(count: product.rating.count, rating: product.rating.rate,)
-                  // Row(
-                  //   mainAxisSize: MainAxisSize.min,
-                  //   children: [
-                  //     const Icon(
-                  //       Icons.star,
-                  //       color: Colors.yellow,
-                  //       size: 20,
-                  //     ),
-                  //     const SizedBox(width: 5),
-                  //     Text(
-                  //       "${product.rating.rate.toString()} (${product.rating.count.toString()})",
-                  //       style: const TextStyle(fontSize: 10),
-                  //     )
-                  //   ],
-                  // ),
-                ),
+                    subtitle: Padding(
+                      padding: const EdgeInsets.only(top: 10),
+                      child: Text(
+                        "Price : \$${product.price.toString()}",
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          color: AppColors.primaryColor,
+                        ),
+                      ),
+                    ),
+                    trailing: RatingWidget(
+                      count: product.rating.count,
+                      rating: product.rating.rate,
+                    )),
                 const Divider(),
                 Padding(
                   padding: const EdgeInsets.symmetric(vertical: 10),
@@ -118,7 +106,7 @@ class ProductDetailPage extends ConsumerWidget {
     );
   }
 
-  _onTap({
+  void _onTap({
     required BuildContext context,
     required ProductModel product,
     required WidgetRef ref,
@@ -126,8 +114,10 @@ class ProductDetailPage extends ConsumerWidget {
   }) async {
     List<CartModel> cartModel = AppData().getCartProducts();
 
-    var idd = cartModel.where((element) => element.productId == id);
-    if (cartModel.isNotEmpty && idd.isNotEmpty && idd.first.productId == id) {
+    var cartProduct = cartModel.where((element) => element.productId == id);
+    if (cartModel.isNotEmpty &&
+        cartProduct.isNotEmpty &&
+        cartProduct.first.productId == id) {
       AppSnackBar.snackBarWidget(
         context: context,
         title: '${product.title} already added in cart',

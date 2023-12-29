@@ -56,7 +56,8 @@ class CategoriesPage extends ConsumerWidget {
                         child: Text(
                           category[i],
                           style: const TextStyle(
-                            color: Colors.white,fontSize: 18,
+                            color: Colors.white,
+                            fontSize: 18,
                             fontWeight: FontWeight.bold,
                           ),
                           textAlign: TextAlign.center,
@@ -70,7 +71,7 @@ class CategoriesPage extends ConsumerWidget {
           }
         },
         error: (error, e) {
-          return null;
+          return Text(e.toString());
         },
         loading: () {
           return const DataLoading();

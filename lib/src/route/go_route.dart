@@ -8,6 +8,8 @@ import 'package:ecommerce_app/src/widgets/page_not_found.dart';
 import 'package:ecommerce_app/src/helpers/route_names.dart';
 import 'package:go_router/go_router.dart';
 
+
+
 final GoRouter appRoutes = GoRouter(
   errorBuilder: (c, i) => const PageNotFound(),
   // initialLocation: '/category',
