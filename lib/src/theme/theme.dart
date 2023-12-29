@@ -27,7 +27,7 @@ class AppTheme {
           backgroundColor: Colors.white,
           minimumSize: const Size(double.infinity, 56),
           shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(20),
+            borderRadius: BorderRadius.circular(10),
           ),
           textStyle: GoogleFonts.b612Mono(
             ///Not Working

@@ -1,6 +1,8 @@
 import 'package:ecommerce_app/src/components/cart/widgets/cart.dart';
 import 'package:ecommerce_app/src/components/product/provider/future/future_provider.dart';
 import 'package:ecommerce_app/src/helpers/route_names.dart';
+import 'package:ecommerce_app/src/routes/app_navigation.dart';
+import 'package:ecommerce_app/src/routes/app_pages.dart';
 import 'package:ecommerce_app/src/widgets/data_loading.dart';
 import 'package:ecommerce_app/src/widgets/network_image.dart';
 import 'package:ecommerce_app/src/widgets/no_record.dart';
@@ -34,11 +36,14 @@ class ProductsPage extends ConsumerWidget {
                 return InkWell(
                   borderRadius: BorderRadius.circular(10),
                   onTap: () {
-                    context.pushNamed(
-                      AppRoute.productDetail,
+                    AppNavigation.to(
+                      AppPages.productDetails,
                       pathParameters: {'id': product[i].id.toString()},
-                      // extra: product[i],
-                    );
+                    ); // context.pushNamed(
+                    //   AppRoute.productDetail,
+                    //   pathParameters: {'id': product[i].id.toString()},
+                    //   extra: product[i],
+                    // );
                     // context.goNamed(
                     //   AppRoute.productDetail,
                     //   pathParameters: {'id': product[i].id.toString()},

@@ -2,6 +2,8 @@ import 'package:ecommerce_app/src/components/cart/widgets/cart.dart';
 import 'package:ecommerce_app/src/components/category/provider/future_provider.dart';
 import 'package:ecommerce_app/src/helpers/color.dart';
 import 'package:ecommerce_app/src/helpers/route_names.dart';
+import 'package:ecommerce_app/src/routes/app_navigation.dart';
+import 'package:ecommerce_app/src/routes/app_pages.dart';
 import 'package:ecommerce_app/src/widgets/data_loading.dart';
 import 'package:ecommerce_app/src/widgets/no_record.dart';
 import 'package:flutter/material.dart';
@@ -45,8 +47,14 @@ class CategoriesPage extends ConsumerWidget {
                   return InkWell(
                     borderRadius: BorderRadius.circular(20),
                     onTap: () {
-                      context.pushNamed(AppRoute.productList,
-                          pathParameters: {'categoryName': category[i]});
+                      AppNavigation.to(
+                        AppPages.products,
+                        pathParameters: {
+                          'categoryName': category[i],
+                        },
+                      );
+                      // context.pushNamed(AppRoute.productList,
+                      //     pathParameters: {'categoryName': category[i]});
                     },
                     child: Material(
                       borderRadius: BorderRadius.circular(20),

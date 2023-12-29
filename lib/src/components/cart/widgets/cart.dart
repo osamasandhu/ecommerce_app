@@ -1,6 +1,8 @@
 import 'package:ecommerce_app/app_data.dart';
 import 'package:ecommerce_app/src/components/cart/provider/cart_provider.dart';
 import 'package:ecommerce_app/src/helpers/route_names.dart';
+import 'package:ecommerce_app/src/routes/app_navigation.dart';
+import 'package:ecommerce_app/src/routes/app_pages.dart';
 import 'package:ecommerce_app/src/widgets/snack_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -16,7 +18,8 @@ class CartWidget extends ConsumerWidget {
     return IconButton(
       onPressed: () {
         AppData().isSignedIn
-            ? context.pushNamed(AppRoute.cart)
+            ? AppNavigation.to(AppPages.cart)
+        // context.pushNamed(AppRoute.cart)
             // ? context.goNamed(AppRoute.cart)
             : AppSnackBar.snackBarWidget(
                 context: context,

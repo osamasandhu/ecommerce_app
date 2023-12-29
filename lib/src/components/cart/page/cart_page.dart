@@ -1,11 +1,7 @@
 import 'package:ecommerce_app/app_data.dart';
-
 import 'package:ecommerce_app/src/components/cart/model/cart_model.dart';
-
 import 'package:ecommerce_app/src/components/cart/provider/cart_provider.dart';
-
 import 'package:ecommerce_app/src/route/nav.dart';
-
 import 'package:ecommerce_app/src/widgets/decorated_container.dart';
 
 import 'package:ecommerce_app/src/widgets/dialog_error.dart';
@@ -49,7 +45,7 @@ class _CartPageState extends ConsumerState<CartPage> {
               itemBuilder: (c, i) {
                 return DecoratedContainerWidget(
                   onLongPress: () {
-                    alertDialog(i: i);
+                    deleteItemDialog(i: i);
                   },
                   child: Row(
                     children: [
@@ -97,9 +93,10 @@ class _CartPageState extends ConsumerState<CartPage> {
     );
   }
 
-  alertDialog({required int i}) {
+  deleteItemDialog({required int i}) {
     return showDialog(
       context: context,
+      barrierDismissible: false,
       builder: (BuildContext context) {
         return AlertDialog(
           content: Text(
@@ -124,8 +121,10 @@ class _CartPageState extends ConsumerState<CartPage> {
               onPressed: () {
                 circularProgressWidget(context);
                 Future.delayed(const Duration(seconds: 2), () {
-                  AppNavigation.pop(context);
-                  AppNavigation.pop(context);
+                  Navigator.of(context).pop();
+                  Navigator.of(context).pop();
+                  // AppNavigation.pop(context);
+                  // AppNavigation.pop(context);
                   AppSnackBar.snackBarWidget(
                     context: context,
                     title: '${cart[i].title} removed from cart successfully',

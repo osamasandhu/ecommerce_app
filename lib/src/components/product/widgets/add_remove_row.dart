@@ -20,13 +20,16 @@ class AddRemoveRow extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        AddRemoveButtonWidget(
-          color: itemCount < 2 ? Colors.grey : Colors.red,
-          onTap: () {
-            if (itemCount > 1) {
-              ref.read(counterValueProvider.notifier).decrement();
-            }
-          },
+        AbsorbPointer(
+          absorbing: itemCount == 0 ? true : false,
+          child: AddRemoveButtonWidget(
+            color: itemCount < 1 ? Colors.grey : Colors.red,
+            onTap: () {
+              if (itemCount > 0) {
+                ref.read(counterValueProvider.notifier).decrement();
+              }
+            },
+          ),
         ),
         SizedBox(
           width: 35,

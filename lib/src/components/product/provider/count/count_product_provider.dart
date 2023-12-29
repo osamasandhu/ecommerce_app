@@ -5,7 +5,7 @@ part 'count_product_provider.g.dart';
 @riverpod
 class CounterValue extends _$CounterValue {
   @override
-  int build() => 1;
+  int build() => 0;
 
   increment() => state++;
 

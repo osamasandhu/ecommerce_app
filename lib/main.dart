@@ -1,6 +1,6 @@
 import 'package:ecommerce_app/app_data.dart';
 import 'package:ecommerce_app/src/helpers/default_behavior.dart';
-import 'package:ecommerce_app/src/route/go_route.dart';
+import 'package:ecommerce_app/src/routes/app_router.dart';
 import 'package:ecommerce_app/src/theme/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -21,8 +21,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp.router(
       theme: AppTheme.themeData,
       debugShowCheckedModeBanner: false,
-      // home: const SignInPage(),
-      routerConfig: appRoutes,
+      routerConfig: AppRouter.router,
     );
   }
 }

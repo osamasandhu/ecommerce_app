@@ -6,8 +6,12 @@ class AddRemoveButtonWidget extends StatelessWidget {
 
   final Color? color;
 
-  const AddRemoveButtonWidget(
-      {super.key, this.icon, required this.onTap, this.color});
+  const AddRemoveButtonWidget({
+    super.key,
+    this.icon,
+    required this.onTap,
+    this.color,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -15,15 +19,15 @@ class AddRemoveButtonWidget extends StatelessWidget {
       onPressed: onTap,
       style: IconButton.styleFrom(
         backgroundColor: color ?? Colors.red,
-        minimumSize: const Size(45, 45),
+        minimumSize: const Size(48, 48),
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(360),
+          borderRadius: BorderRadius.circular(10),
         ),
       ),
       child: Icon(
         icon ?? Icons.remove,
         color: Colors.white,
-        size: 13,
+        size: 14,
       ),
     );
   }

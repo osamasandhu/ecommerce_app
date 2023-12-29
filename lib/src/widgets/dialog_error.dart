@@ -36,7 +36,10 @@ showDioError(BuildContext context, var e) {
         actions: [
           TextButton(
             onPressed: () {
-              AppNavigation.pop(context);
+
+              Navigator.of(context).pop();
+
+              // AppNavigation.pop(context);
             },
             child: const Text(
               'OK',
@@ -48,6 +51,3 @@ showDioError(BuildContext context, var e) {
     },
   );
 }
-
-
-
