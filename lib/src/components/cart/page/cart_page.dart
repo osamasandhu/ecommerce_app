@@ -44,8 +44,14 @@ class _CartPageState extends ConsumerState<CartPage> {
               padding: const EdgeInsets.all(15),
               itemBuilder: (c, i) {
                 return DecoratedContainerWidget(
-                  onLongPress: () {
-                    deleteItemDialog(i: i);
+                  onLongPress: () async {
+                    await deleteItemDialog(i: i);
+                    // if (cart.isEmpty) {
+                    //   print(AppData().isSignedIn);
+                    //   AppData().setToken('');
+                    //   print(AppData().isSignedIn);
+                    //   setState(() {});
+                    // }
                   },
                   child: Row(
                     children: [
@@ -93,8 +99,8 @@ class _CartPageState extends ConsumerState<CartPage> {
     );
   }
 
-  deleteItemDialog({required int i}) {
-    return showDialog(
+  Future deleteItemDialog({required int i}) async {
+    return await showDialog(
       context: context,
       barrierDismissible: false,
       builder: (BuildContext context) {

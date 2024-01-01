@@ -11,7 +11,7 @@ class AppSnackBar {
       SnackBar(
         duration: const Duration(seconds: 2),
         content: Text(
-          title ?? "Cart is Empty",
+          title ?? "The shopping cart currently contains no items.",
           textAlign: TextAlign.center,
           style: GoogleFonts.b612Mono(fontSize: 9),
         ),

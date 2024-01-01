@@ -53,8 +53,6 @@ class CategoriesPage extends ConsumerWidget {
                           'categoryName': category[i],
                         },
                       );
-                      // context.pushNamed(AppRoute.productList,
-                      //     pathParameters: {'categoryName': category[i]});
                     },
                     child: Material(
                       borderRadius: BorderRadius.circular(20),

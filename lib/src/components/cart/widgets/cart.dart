@@ -17,9 +17,10 @@ class CartWidget extends ConsumerWidget {
 
     return IconButton(
       onPressed: () {
-        AppData().isSignedIn
+        print(AppData().isSignedIn);
+        AppData().getCartProducts().isNotEmpty
             ? AppNavigation.to(AppPages.cart)
-        // context.pushNamed(AppRoute.cart)
+            // context.pushNamed(AppRoute.cart)
             // ? context.goNamed(AppRoute.cart)
             : AppSnackBar.snackBarWidget(
                 context: context,

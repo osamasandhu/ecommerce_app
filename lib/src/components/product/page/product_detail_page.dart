@@ -89,22 +89,24 @@ class ProductDetailPage extends ConsumerWidget {
                     context: context,
                   ),
                 ),
-                AbsorbPointer(
-                  absorbing: itemCount == 0 ? true : false,
-                  child: ElevatedButton(
-                    onPressed: itemCount == 0
-                        ? () {}
-                        : () {
-                            _onTap(
+                ElevatedButton(
+                  onPressed: itemCount == 0
+                      ? () {
+                          AppSnackBar.snackBarWidget(
                               context: context,
-                              product: product,
-                              ref: ref,
-                              itemCount: itemCount,
-                            );
-                          },
-                    child: const Text(
-                      'Add to cart',
-                    ),
+                              title:
+                                  "The minimum required quantity should be at least one.");
+                        }
+                      : () {
+                          _onTap(
+                            context: context,
+                            product: product,
+                            ref: ref,
+                            itemCount: itemCount,
+                          );
+                        },
+                  child: const Text(
+                    'Add to cart',
                   ),
                 )
               ],
@@ -162,7 +164,6 @@ class ProductDetailPage extends ConsumerWidget {
         },
       );
 
-      AppData().setToken('Cart is not Empty');
     }
   }
 }

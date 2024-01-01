@@ -1,13 +1,12 @@
+import 'package:ecommerce_app/app_data.dart';
 import 'package:ecommerce_app/src/components/auth/api/api_request/auth_api.dart';
 import 'package:ecommerce_app/src/components/auth/models/sign_in_model.dart';
 import 'package:ecommerce_app/src/components/auth/widgets/have_or_not_account.dart';
-import 'package:ecommerce_app/src/helpers/route_names.dart';
 import 'package:ecommerce_app/src/routes/app_navigation.dart';
 import 'package:ecommerce_app/src/routes/app_pages.dart';
 import 'package:ecommerce_app/src/widgets/dialog_error.dart';
 import 'package:ecommerce_app/src/widgets/text_field.dart';
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 import 'package:reusables/reusables.dart';
 
 class SignInPage extends StatefulWidget {
@@ -83,11 +82,13 @@ class _SignInPageState extends State<SignInPage> {
   onSubmit() async {
     if (_formKey.currentState!.validate()) {
       try {
-        await Awaiter.process(
-          future: _signIn(),
-          context: context,
-          arguments: 'Loading',
-        );
+        // await Awaiter.process(
+        //   future: _signIn(),
+        //   context: context,
+        //   arguments: 'Loading',
+        // );
+        AppData().setToken('asd');
+
         if (mounted) {
           AppNavigation.to(AppPages.category);
           // context.goNamed(AppRoute.category);
@@ -100,6 +101,7 @@ class _SignInPageState extends State<SignInPage> {
   }
 
   Future _signIn() async {
+
     try {
       await AuthApi().signIn(
         SignInModel(
@@ -107,6 +109,7 @@ class _SignInPageState extends State<SignInPage> {
           password: passwordController.text,
         ).fromModelToDTO(),
       );
+
     } catch (_) {
       rethrow;
     }
