@@ -1,4 +1,4 @@
-import 'package:ecommerce_app/src/components/auth/api/dto/sign_in/sign_in_dto.dart';
+import 'package:ecommerce_app/src/features/auth/api/dto/sign_in/sign_in_dto.dart';
 
 class SignInModel {
   String username;

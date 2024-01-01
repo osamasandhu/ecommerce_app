@@ -1,4 +1,4 @@
-import 'package:ecommerce_app/src/components/auth/api/dto/name/name_dto.dart';
+import 'package:ecommerce_app/src/features/auth/api/dto/name/name_dto.dart';
 import 'package:ecommerce_app/src/helpers/const.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 

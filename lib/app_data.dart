@@ -1,8 +1,8 @@
-import 'package:ecommerce_app/src/components/cart/model/cart_model.dart';
+import 'package:ecommerce_app/src/features/cart/model/cart_model.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import 'src/components/cart/mixing/cart_mixing.dart';
+import 'src/features/cart/mixing/cart_mixing.dart';
 
 ///Local Storage
 class AppData with CartProductMixing {

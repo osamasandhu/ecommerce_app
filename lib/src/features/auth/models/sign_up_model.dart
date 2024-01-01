@@ -1,5 +1,5 @@
-import 'package:ecommerce_app/src/components/auth/api/dto/sign_up/sign_up_dto.dart';
-import 'package:ecommerce_app/src/components/auth/models/name_model.dart';
+import 'package:ecommerce_app/src/features/auth/api/dto/sign_up/sign_up_dto.dart';
+import 'package:ecommerce_app/src/features/auth/models/name_model.dart';
 
 class SignUpModel {
   NameModel name;

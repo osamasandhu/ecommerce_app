@@ -1,7 +1,7 @@
 import 'package:ecommerce_app/app_data.dart';
-import 'package:ecommerce_app/src/components/auth/api/api_request/auth_api.dart';
-import 'package:ecommerce_app/src/components/auth/models/sign_in_model.dart';
-import 'package:ecommerce_app/src/components/auth/widgets/have_or_not_account.dart';
+import 'package:ecommerce_app/src/features/auth/api/api_request/auth_api.dart';
+import 'package:ecommerce_app/src/features/auth/models/sign_in_model.dart';
+import 'package:ecommerce_app/src/features/auth/widgets/have_or_not_account.dart';
 import 'package:ecommerce_app/src/routes/app_navigation.dart';
 import 'package:ecommerce_app/src/routes/app_pages.dart';
 import 'package:ecommerce_app/src/widgets/dialog_error.dart';
@@ -87,10 +87,11 @@ class _SignInPageState extends State<SignInPage> {
         //   context: context,
         //   arguments: 'Loading',
         // );
-        AppData().setToken('asd');
+        // AppData().setToken('asd');
+        AppData().setToken('Cart is not Empty');
 
         if (mounted) {
-          AppNavigation.to(AppPages.category);
+          AppNavigation.go(AppPages.category);
           // context.goNamed(AppRoute.category);
         }
       } catch (e) {
