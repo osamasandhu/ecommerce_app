@@ -1,25 +1,26 @@
 import 'package:ecommerce_app/src/widgets/data_loading.dart';
 import 'package:flutter/material.dart';
 
-class NetworkImageWidget extends StatelessWidget {
+class AppNetworkImageWidget extends StatelessWidget {
   final String url;
+  final double? radius;
 
-  const NetworkImageWidget({super.key, required this.url});
+  const AppNetworkImageWidget({super.key, required this.url, this.radius});
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: const BoxDecoration(
+      decoration: BoxDecoration(
         borderRadius: BorderRadius.only(
-          topLeft: Radius.circular(10),
-          bottomLeft: Radius.circular(10),
+          topLeft: Radius.circular(radius ?? 10),
+          bottomLeft: Radius.circular(radius ?? 10),
         ),
         color: Colors.white,
       ),
-      padding: const EdgeInsets.all(10),
+      padding: const EdgeInsets.all(5),
       child: Image.network(
         url,
-        // fit: BoxFit.fill,
+        // fit: BoxFit.fitHeight,
         height: 70,
         width: 70,
         loadingBuilder: (BuildContext context, Widget child,
