@@ -1,14 +1,12 @@
 import 'package:ecommerce_app/src/features/cart/widgets/cart.dart';
 import 'package:ecommerce_app/src/features/category/provider/future_provider.dart';
 import 'package:ecommerce_app/src/helpers/color.dart';
-import 'package:ecommerce_app/src/helpers/route_names.dart';
 import 'package:ecommerce_app/src/routes/app_navigation.dart';
 import 'package:ecommerce_app/src/routes/app_pages.dart';
 import 'package:ecommerce_app/src/widgets/data_loading.dart';
 import 'package:ecommerce_app/src/widgets/no_record.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:go_router/go_router.dart';
 
 class CategoriesPage extends ConsumerWidget {
   const CategoriesPage({super.key});
@@ -20,8 +18,11 @@ class CategoriesPage extends ConsumerWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Categories'),
-        actions: const [
-          CartWidget(),
+        actions: [
+          const CartWidget(),
+          IconButton(onPressed: () {
+            AppNavigation.to(AppPages.dummyA);
+          }, icon:Icon(Icons.tab)),
         ],
       ),
       body: categoriesData.when(

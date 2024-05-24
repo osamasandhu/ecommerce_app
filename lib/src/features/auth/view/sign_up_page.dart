@@ -138,8 +138,9 @@ class _SignUpPageState extends State<SignUpPage> {
       var v = await AuthApi().signUp(
         SignUpModel(
           name: NameModel(
-              lastname: lastNameController.text,
-              firstname: firstNameController.text),
+            lastname: lastNameController.text,
+            firstname: firstNameController.text,
+          ),
           email: emailController.text,
           password: passwordController.text,
           username: userNameController.text,

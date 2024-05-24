@@ -7,7 +7,6 @@ import 'package:ecommerce_app/src/routes/app_pages.dart';
 import 'package:ecommerce_app/src/widgets/dialog_error.dart';
 import 'package:ecommerce_app/src/widgets/text_field.dart';
 import 'package:flutter/material.dart';
-import 'package:reusables/reusables.dart';
 
 class SignInPage extends StatefulWidget {
   const SignInPage({super.key});
@@ -91,18 +90,18 @@ class _SignInPageState extends State<SignInPage> {
         AppData().setToken('Cart is not Empty');
 
         if (mounted) {
+          // AppNavigation.go(AppPages.home);
           AppNavigation.go(AppPages.category);
           // context.goNamed(AppRoute.category);
         }
       } catch (e) {
-        print(e);
+        debugPrint(e.toString());
         if (mounted) showDioError(context, e);
       }
     }
   }
 
   Future _signIn() async {
-
     try {
       await AuthApi().signIn(
         SignInModel(
@@ -110,7 +109,6 @@ class _SignInPageState extends State<SignInPage> {
           password: passwordController.text,
         ).fromModelToDTO(),
       );
-
     } catch (_) {
       rethrow;
     }

@@ -1,7 +1,5 @@
 import 'package:ecommerce_app/src/features/cart/widgets/cart.dart';
 import 'package:ecommerce_app/src/features/product/provider/future/future_provider.dart';
-import 'package:ecommerce_app/src/helpers/color.dart';
-import 'package:ecommerce_app/src/helpers/route_names.dart';
 import 'package:ecommerce_app/src/routes/app_navigation.dart';
 import 'package:ecommerce_app/src/routes/app_pages.dart';
 import 'package:ecommerce_app/src/widgets/data_loading.dart';
@@ -10,7 +8,6 @@ import 'package:ecommerce_app/src/widgets/no_record.dart';
 import 'package:ecommerce_app/src/widgets/rating_count_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:go_router/go_router.dart';
 
 class ProductsPage extends ConsumerWidget {
   final String categoryName;

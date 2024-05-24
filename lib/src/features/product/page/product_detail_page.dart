@@ -7,8 +7,6 @@ import 'package:ecommerce_app/src/features/product/provider/count/count_product_
 import 'package:ecommerce_app/src/features/product/provider/future/future_provider.dart';
 import 'package:ecommerce_app/src/features/product/widgets/add_remove_row.dart';
 import 'package:ecommerce_app/src/helpers/color.dart';
-import 'package:ecommerce_app/src/route/nav.dart';
-import 'package:ecommerce_app/src/routes/app_navigation.dart';
 import 'package:ecommerce_app/src/widgets/data_loading.dart';
 import 'package:ecommerce_app/src/widgets/dialog_error.dart';
 import 'package:ecommerce_app/src/widgets/network_image.dart';
@@ -24,6 +22,7 @@ class ProductDetailPage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+
     final itemCount = ref.watch(counterValueProvider);
     final productDetail = ref.watch(getSingleProductProvider(id));
 

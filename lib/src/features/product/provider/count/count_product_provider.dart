@@ -2,6 +2,7 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'count_product_provider.g.dart';
 
+
 @riverpod
 class CounterValue extends _$CounterValue {
   @override
@@ -10,5 +11,8 @@ class CounterValue extends _$CounterValue {
   increment() => state++;
 
   decrement() => state--;
+
+
+
 }
 

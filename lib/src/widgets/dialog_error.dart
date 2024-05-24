@@ -1,4 +1,3 @@
-import 'package:ecommerce_app/src/route/nav.dart';
 import 'package:ecommerce_app/src/shared/dio_error.dart';
 import 'package:ecommerce_app/src/widgets/data_loading.dart';
 import 'package:flutter/material.dart';

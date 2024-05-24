@@ -1,5 +1,3 @@
-import 'package:ecommerce_app/src/routes/app_navigation.dart';
-import 'package:ecommerce_app/src/routes/app_pages.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
